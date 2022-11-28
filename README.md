@@ -1,3 +1,30 @@
+# About
+This is a little script for DragonRuby Game Toolkit
+At the time of writing, this is not actually a Smaug package (check out smaug.dev) but the idea is that it will be one.
+
+# Usage
+## Installation
+### With Smaug
+Install with smaug (once it's on there, if it's not at the time you're reading this)
+Run `ruby smaug/inline-require/inline_require.rb [OPTIONS]`
+
+### Just use directly (It's just 1 file)
+download `inline_require.rb` to your project's root directory
+
+Run `ruby inline_require.rb [OPTIONS]`
+## Setup & Assumptions
+
+Here's the important part:
+- you'll need to replace all your `require "<<filename>>"` in `main.rb` with `# main_root_require "<<filename>>"` (yes, as a comment)
+- then you'll need to end `main.rb` with a line `require 'app/inlined.rb'`
+- `app/main.rb` should only have `require` statements
+
+Options:
+You can pass `-i <<inlined output path>>` so that it'll output all those `require...`'s in some file besides the default `app/inlined.rb`
+- make sure you end `main.rb` ends with a corresponding `require "<<inlined output path>>"`
+You can pass `-m <<path to main.rb>>` to specify something besides `app/main.rb`
+
+I haven't tested it with anything but regular ruby (not dragonruby) on a Mac.
 # Why?
 DragonRuby GTK `require "<<path/to/file>>"` is a little dodgy when doing nested `requires`.
 To see the examples files, you'll have to visit on github
@@ -56,20 +83,3 @@ In `examples/solution_3b_using-package/after`
 
 Changes from `examples/solution_3b_using-package_after`
 - `require app/inlined.rb` - this is all filled out now
-
-# Usage
-Install with smaug
-
-Run `ruby smaug/inline-require/inline-require.rb [OPTIONS]`
-
-Here's the important part:
-- you'll need to replace all your `require "<<filename>>"` in `main.rb` with `# main_root_require "<<filename>>"` (yes, as a comment)
-- then you'll need to end `main.rb` with a line `require 'app/inlined.rb'`
-- `app/main.rb` should only have `require` statements
-
-Options:
-You can pass `-i <<inlined output path>>` so that it'll output all those `require...`'s in some file besides the default `app/inlined.rb`
-- make sure you end `main.rb` ends with a corresponding `require "<<inlined output path>>"`
-You can pass `-m <<path to main.rb>>` to specify something besides `app/main.rb`
-
-I haven't tested it with anything but regular ruby (not dragonruby) on a Mac.
