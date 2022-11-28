@@ -1,0 +1,7 @@
+app/
+logs/
+builds/
+spec/
+metadata/
+smaug/
+exceptions
